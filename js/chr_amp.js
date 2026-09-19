@@ -163,7 +163,7 @@ addLayer("c", {
                 let effect = player.g.points.add(1).pow(0.75)
                 return effect
             },
-            unlocked() {return hasMilestone('c', 2)},
+            unlocked() {return hasMilestone('c', 2) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "c",
             currencyDisplayName: "Q",
             currencyInternalName: "charge",
@@ -176,7 +176,7 @@ addLayer("c", {
                 let effect = tmp.c.batteries.total.pow(1.25)
                 return effect
             },
-            unlocked() {return hasUpgrade('c', 11)},
+            unlocked() {return hasUpgrade('c', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "c",
             currencyDisplayName: "Q",
             currencyInternalName: "charge",
@@ -189,7 +189,7 @@ addLayer("c", {
                 let effect = new Decimal(3)
                 return effect
             },
-            unlocked() {return hasUpgrade('c', 12)},
+            unlocked() {return hasUpgrade('c', 12) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "c",
             currencyDisplayName: "Q",
             currencyInternalName: "charge",
@@ -202,7 +202,7 @@ addLayer("c", {
                 let effect = player.a.points.add(1).log(10).pow(2).div(100)
                 return effect
             },
-            unlocked() {return hasUpgrade('c', 11)},
+            unlocked() {return hasUpgrade('c', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         22: {
             title: "Alternative Power Source",
@@ -212,7 +212,7 @@ addLayer("c", {
                 let effect = player.a.points.add(1).pow(0.75)
                 return effect
             },
-            unlocked() {return hasUpgrade('c', 21)},
+            unlocked() {return hasUpgrade('c', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         23: {
             title: "Multi Charge",
@@ -222,7 +222,7 @@ addLayer("c", {
                 let effect = tmp.c.effect.add(1).log(10).pow(0.5).add(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('c', 22)},
+            unlocked() {return hasUpgrade('c', 22) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
 
         }
     },
@@ -385,9 +385,11 @@ addLayer("c", {
             width: 300,
             height: 30,
             progress() {
+                if (tmp.c.chargeCap.eq(0)) return 0
                 return player.c.charge.div(tmp.c.chargeCap).mag
             },
             display() {
+                if (tmp.c.chargeCap.eq(0)) return "Locked"
                 return `${format(player.c.charge.div(tmp.c.chargeCap).mul(100))}%`
             },
             unlocked() {return player.c.unlocked},
@@ -451,7 +453,7 @@ addLayer("c", {
         if (player.c.chargerSlots.includes('A')) player.c.batteries.altCharge = player.c.batteries.altCharge.add(tmp.c.effect.mul(diff)).max(0)
     },
     doReset(resettingLayer) {
-        let keep = ['milestones', 'best']
+        let keep = ['milestones', 'best', 'autoPrestigeToggle']
         let keptUpgrades = []
         
         if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
@@ -604,7 +606,7 @@ addLayer("v", {
                 let effect = player.v.voltage.add(1).log(5)
                 return effect
             },
-            unlocked() {return hasMilestone('v', 1)},
+            unlocked() {return hasMilestone('v', 1) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "v",
             currencyDisplayName: "V",
             currencyInternalName: "voltage",
@@ -618,7 +620,7 @@ addLayer("v", {
                 let effect = player.c.charge.add(1).log(10).add(1).log(10).div(1.5)
                 return effect
             },
-            unlocked() {return hasUpgrade('v', 11)},
+            unlocked() {return hasUpgrade('v', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "v",
             currencyDisplayName: "V",
             currencyInternalName: "voltage",
@@ -632,7 +634,7 @@ addLayer("v", {
                 let effect = player.v.voltage.add(1).log(10).add(1).log(10).div(1.5)
                 return effect
             },
-            unlocked() {return hasUpgrade('v', 12)},
+            unlocked() {return hasUpgrade('v', 12) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "v",
             currencyDisplayName: "V",
             currencyInternalName: "voltage",
@@ -646,7 +648,7 @@ addLayer("v", {
                 let effect = player.v.points.pow(0.8).div(3)
                 return effect
             },
-            unlocked() {return hasUpgrade('v', 11)},
+            unlocked() {return hasUpgrade('v', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         22: {
             title: "Underutilized Statistics",
@@ -656,7 +658,7 @@ addLayer("v", {
                 let effect = player.v.points.div(100)
                 return effect
             },
-            unlocked() {return hasUpgrade('v', 21)},
+            unlocked() {return hasUpgrade('v', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         23: {
             title: "Multi Amplify",
@@ -666,7 +668,7 @@ addLayer("v", {
                 let effect = tmp.v.effect.add(1).log(10).pow(2).add(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('v', 21)},
+            unlocked() {return hasUpgrade('v', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         }
     },
 
@@ -888,7 +890,7 @@ addLayer("v", {
         player.v.voltageDecay = player.v.voltageDecay.add(tmp.v.decayRate.mul(diff)).max(0)
     },
     doReset(resettingLayer) {
-        let keep = ['milestones', 'best']
+        let keep = ['milestones', 'best', 'autoPrestigeToggle']
         let keptUpgrades = []
         
         if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)

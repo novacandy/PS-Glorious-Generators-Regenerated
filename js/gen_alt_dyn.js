@@ -104,7 +104,7 @@ addLayer("g", {
                 if (inChallenge('v', 11)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('g', 11) || hasUpgrade(this.layer, this.id)}
+            unlocked() {return hasUpgrade('g', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked}
         },
         13: {
             title: "More Generators",
@@ -115,7 +115,7 @@ addLayer("g", {
                 if (inChallenge('v', 11)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('g', 12) || hasUpgrade(this.layer, this.id)}
+            unlocked() {return hasUpgrade('g', 12) || hasUpgrade(this.layer, this.id) || player.m.unlocked}
         },
         14: {
             title: "Stronger Power",
@@ -126,7 +126,7 @@ addLayer("g", {
                 if (inChallenge('v', 11)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('g', 13) || hasUpgrade(this.layer, this.id)}
+            unlocked() {return hasUpgrade('g', 13) || hasUpgrade(this.layer, this.id) || player.m.unlocked}
         },
         21: {
             title: "Better Generators",
@@ -137,7 +137,7 @@ addLayer("g", {
                 if (inChallenge('v', 11)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('g', 11) || hasUpgrade(this.layer, this.id)},
+            unlocked() {return hasUpgrade('g', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "g",
             currencyDisplayName: "GP",
             currencyInternalName: "genPower",
@@ -151,7 +151,7 @@ addLayer("g", {
                 if (inChallenge('v', 11)) effect = new Decimal(1)              
                 return effect
             },
-            unlocked() {return hasUpgrade('g', 21) || hasUpgrade(this.layer, this.id)},
+            unlocked() {return hasUpgrade('g', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "g",
             currencyDisplayName: "GP",
             currencyInternalName: "genPower",
@@ -165,7 +165,7 @@ addLayer("g", {
                 if (inChallenge('v', 11)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('g', 22) || hasUpgrade(this.layer, this.id)},
+            unlocked() {return hasUpgrade('g', 22) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "g",
             currencyDisplayName: "GP",
             currencyInternalName: "genPower",
@@ -179,7 +179,7 @@ addLayer("g", {
                 if (inChallenge('v', 11)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('g', 23) || hasUpgrade(this.layer, this.id)},
+            unlocked() {return hasUpgrade('g', 23) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "g",
             currencyDisplayName: "GP",
             currencyInternalName: "genPower",
@@ -754,14 +754,16 @@ addLayer("g", {
             }
         }
 
-        if (hasUpgrade('g', 31)) keptUpgrades.push(31)
-        if (hasUpgrade('g', 32)) keptUpgrades.push(32)
-        if (hasUpgrade('g', 33)) keptUpgrades.push(33)
-        if (hasUpgrade('g', 34)) keptUpgrades.push(34)
-        if (hasUpgrade('g', 41)) keptUpgrades.push(41)
-        if (hasUpgrade('g', 42)) keptUpgrades.push(42)
-        if (hasUpgrade('g', 43)) keptUpgrades.push(43)
-        if (hasUpgrade('g', 44)) keptUpgrades.push(44)
+        if (resettingLayer !== 'm') {
+            if (hasUpgrade('g', 31)) keptUpgrades.push(31)
+            if (hasUpgrade('g', 32)) keptUpgrades.push(32)
+            if (hasUpgrade('g', 33)) keptUpgrades.push(33)
+            if (hasUpgrade('g', 34)) keptUpgrades.push(34)
+            if (hasUpgrade('g', 41)) keptUpgrades.push(41)
+            if (hasUpgrade('g', 42)) keptUpgrades.push(42)
+            if (hasUpgrade('g', 43)) keptUpgrades.push(43)
+            if (hasUpgrade('g', 44)) keptUpgrades.push(44)
+        }
         
         if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
 
@@ -887,7 +889,7 @@ addLayer("a", {
                 if (inChallenge('v', 21)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('a', 11)},
+            unlocked() {return hasUpgrade('a', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "a",
             currencyDisplayName: "AC",
             currencyInternalName: "alternatingCurrent",
@@ -901,7 +903,7 @@ addLayer("a", {
                 if (inChallenge('v', 21)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('a', 12)},
+            unlocked() {return hasUpgrade('a', 12) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "a",
             currencyDisplayName: "AC",
             currencyInternalName: "alternatingCurrent",
@@ -915,7 +917,7 @@ addLayer("a", {
                 if (inChallenge('v', 21)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('a', 13)},
+            unlocked() {return hasUpgrade('a', 13) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "a",
             currencyDisplayName: "AC",
             currencyInternalName: "alternatingCurrent",
@@ -929,7 +931,7 @@ addLayer("a", {
                 if (inChallenge('v', 21)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('a', 11)},
+            unlocked() {return hasUpgrade('a', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         22: {
             title: "Self Generation II",
@@ -940,7 +942,7 @@ addLayer("a", {
                 if (inChallenge('v', 21)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('a', 21)},
+            unlocked() {return hasUpgrade('a', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         23: {
             title: "More Alternators",
@@ -951,7 +953,7 @@ addLayer("a", {
                 if (inChallenge('v', 21)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('a', 21)},
+            unlocked() {return hasUpgrade('a', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         24: {
             title: "Multi Alternation",
@@ -962,7 +964,7 @@ addLayer("a", {
                 if (inChallenge('v', 21)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('a', 21)},
+            unlocked() {return hasUpgrade('a', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
 
         // Pseudo upgrades
@@ -1272,10 +1274,12 @@ addLayer("a", {
                 toKeep.splice(randomID, 1) 
             }
         }
-        if (hasUpgrade('a', 31)) keptUpgrades.push(31)
-        if (hasUpgrade('a', 32)) keptUpgrades.push(32)
-        if (hasUpgrade('a', 33)) keptUpgrades.push(33)
-        if (hasUpgrade('a', 34)) keptUpgrades.push(34)
+        if (resettingLayer !== 'm') {
+            if (hasUpgrade('a', 31)) keptUpgrades.push(31)
+            if (hasUpgrade('a', 32)) keptUpgrades.push(32)
+            if (hasUpgrade('a', 33)) keptUpgrades.push(33)
+            if (hasUpgrade('a', 34)) keptUpgrades.push(34)
+        }
 
         if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
 
@@ -1399,7 +1403,7 @@ addLayer("d", {
                 if (inChallenge('v', 22)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('d', 11)},
+            unlocked() {return hasUpgrade('d', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "d",
             currencyDisplayName: "DC",
             currencyInternalName: "directCurrent",
@@ -1413,7 +1417,7 @@ addLayer("d", {
                 if (inChallenge('v', 22)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('d', 12)},
+            unlocked() {return hasUpgrade('d', 12) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "d",
             currencyDisplayName: "DC",
             currencyInternalName: "directCurrent",
@@ -1427,7 +1431,7 @@ addLayer("d", {
                 if (inChallenge('v', 22)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('d', 13)},
+            unlocked() {return hasUpgrade('d', 13) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
             currencyLayer: "d",
             currencyDisplayName: "DC",
             currencyInternalName: "directCurrent",
@@ -1441,7 +1445,7 @@ addLayer("d", {
                 if (inChallenge('v', 22)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('d', 11)},
+            unlocked() {return hasUpgrade('d', 11) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         22: {
             title: "Free Base",
@@ -1452,7 +1456,7 @@ addLayer("d", {
                 if (inChallenge('v', 22)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('d', 21)},
+            unlocked() {return hasUpgrade('d', 21) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         23: {
             title: "More Dynamos",
@@ -1463,7 +1467,7 @@ addLayer("d", {
                 if (inChallenge('v', 22)) effect = new Decimal(0)
                 return effect
             },
-            unlocked() {return hasUpgrade('d', 22)},
+            unlocked() {return hasUpgrade('d', 22) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
         24: {
             title: "Multi Direction",
@@ -1474,7 +1478,7 @@ addLayer("d", {
                 if (inChallenge('v', 22)) effect = new Decimal(1)
                 return effect
             },
-            unlocked() {return hasUpgrade('d', 23)},
+            unlocked() {return hasUpgrade('d', 23) || hasUpgrade(this.layer, this.id) || player.m.unlocked},
         },
 
         // Pseudo upgrades
@@ -1785,10 +1789,12 @@ addLayer("d", {
             }
         }
 
-        if (hasUpgrade('d', 31)) keptUpgrades.push(31)
-        if (hasUpgrade('d', 32)) keptUpgrades.push(32)
-        if (hasUpgrade('d', 33)) keptUpgrades.push(33)
-        if (hasUpgrade('d', 34)) keptUpgrades.push(34)
+        if (resettingLayer !== 'm') {
+            if (hasUpgrade('d', 31)) keptUpgrades.push(31)
+            if (hasUpgrade('d', 32)) keptUpgrades.push(32)
+            if (hasUpgrade('d', 33)) keptUpgrades.push(33)
+            if (hasUpgrade('d', 34)) keptUpgrades.push(34)
+        }
         
         if (layers[resettingLayer].row > this.row) layerDataReset(this.layer, keep)
 

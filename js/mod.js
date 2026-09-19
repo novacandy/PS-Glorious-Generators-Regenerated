@@ -2,7 +2,7 @@ let modInfo = {
 	name: "Prestigious Saplings: Glorious Generators: Regenerated!",
 	author: "nobody",
 	pointsName: "points",
-	modFiles: ["gen_alt_dyn.js", "chr_amp.js", "metaGens.js", "tree.js"],
+	modFiles: ["gen_alt_dyn.js", "chr_amp.js", "metaGens.js", "saveHub.js", "tree.js"],
 
 	discordName: "",
 	discordLink: "",
