@@ -701,6 +701,7 @@ addLayer("v", {
             canComplete() {return player.g.points.gte(this.goal())},
             completionLimit: 5,
             unlocked() {return hasMilestone('v', 1)},
+            marked() {if (maxedChallenge(this.layer, this.id)) return "resources/star.png"},
             style() {return {
                 "width": "325px",
                 "height": "325px",
@@ -741,6 +742,7 @@ addLayer("v", {
             canComplete() {return player.a.points.gte(this.goal())},
             completionLimit: 5,
             unlocked() {return hasMilestone('v', 3)},
+            marked() {if (maxedChallenge(this.layer, this.id)) return "resources/star.png"},
             style() {return {
                 "width": "325px",
                 "height": "325px",
@@ -786,6 +788,7 @@ addLayer("v", {
             canComplete() {return player.d.points.gte(this.goal())},
             completionLimit: 5,
             unlocked() {return hasMilestone('v', 5)},
+            marked() {if (maxedChallenge(this.layer, this.id)) return "resources/star.png"},
             style() {return {
                 "width": "325px",
                 "height": "325px",

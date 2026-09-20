@@ -820,7 +820,7 @@ addLayer("a", {
         if (!tmp[this.layer].resetsNothing) player.a.alternatingCurrent = new Decimal(0)
     },
     resetsNothing() {return hasMilestone('a', 1)},
-    canBuyMax() {return hasMilestone('a', 2)},
+    canBuyMax() {return hasMilestone('a', 3)},
     autoPrestige() {return hasMilestone('a', 4) && player.a.autoPrestigeToggle},
 
     effect() { 
@@ -1735,7 +1735,7 @@ addLayer("d", {
     milestones: {
         0: {
             requirementDescription: "1 dynamo",
-            effectDescription: "Keep one random generator upgrade on reset per alternator",
+            effectDescription: "Keep one random generator upgrade on reset per dynamo",
             done() {return player.d.points.gte(1)},
         },
         1: {
